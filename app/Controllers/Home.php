@@ -37,7 +37,11 @@ class Home extends BaseController
 			// gets data and returns it in  json
 			$this->response->setContentType('application/json');
 			$data = $query->getResult();
-			return json_encode($data);
+			if ($data){
+				return json_encode($data);
+			}
+			// return generic message if there's no data
+			return json_encode(["message" => "No events"]);
 		}
 	}
 	public function deleteEvent()
